@@ -75,6 +75,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 6
   direction: 0
+  spider: {fileID: 194660, guid: 8903fa98ba0907c45a3c7a3ca0a0a863, type: 2}
 --- !u!212 &21291020
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -120,6 +121,10 @@ Prefab:
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: spider
+      value: 
+      objectReference: {fileID: 194660, guid: 8903fa98ba0907c45a3c7a3ca0a0a863, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 135142}

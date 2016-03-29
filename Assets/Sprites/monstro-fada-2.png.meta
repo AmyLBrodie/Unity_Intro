@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: d689643aee5ce604cbc7fce78becad85
-timeCreated: 1458919336
+timeCreated: 1459146226
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -13,6 +13,12 @@ TextureImporter:
     21300012: redfairyshoot1
     21300014: redfairyshoot2
     21300016: redfairyshoot3
+    21300018: forward1
+    21300020: forward2
+    21300022: forward3
+    21300024: forward4
+    21300026: forward5
+    21300028: forward6
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -241,6 +247,125 @@ TextureImporter:
         - {x: 15, y: -11}
         - {x: 15, y: 11}
         - {x: 12, y: 19}
+    - name: forward1
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 312
+        width: 35
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -12.5, y: 18}
+        - {x: -14.5, y: 14}
+        - {x: -14.5, y: -1}
+        - {x: -5.5, y: -17}
+        - {x: 6.5, y: -17}
+        - {x: 14.5, y: -1}
+        - {x: 14.5, y: 14}
+        - {x: 13.5, y: 18}
+    - name: forward2
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 312
+        width: 35
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 9.5, y: 18}
+        - {x: -7.5, y: 18}
+        - {x: -15.5, y: 16}
+        - {x: -15.5, y: 0}
+        - {x: -5.5, y: -17}
+        - {x: 6.5, y: -17}
+        - {x: 11.5, y: -7}
+        - {x: 15.5, y: 2}
+        - {x: 15.5, y: 12}
+    - name: forward3
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 312
+        width: 35
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -10.5, y: 18}
+        - {x: -15.5, y: 12}
+        - {x: -15.5, y: -3}
+        - {x: -8.5, y: -17}
+        - {x: 11.5, y: -17}
+        - {x: 15.5, y: -6}
+        - {x: 15.5, y: 17}
+        - {x: 11.5, y: 18}
+    - name: forward4
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 312
+        width: 35
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 6.5, y: 18}
+        - {x: -3.5, y: 18}
+        - {x: -9.5, y: 16}
+        - {x: -15.5, y: 4}
+        - {x: -15.5, y: -5}
+        - {x: -12.5, y: -10}
+        - {x: -7.5, y: -15}
+        - {x: -3.5, y: -17}
+        - {x: 7.5, y: -17}
+        - {x: 15.5, y: -9}
+        - {x: 15.5, y: 5}
+    - name: forward5
+      rect:
+        serializedVersion: 2
+        x: 149
+        y: 312
+        width: 35
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -10.5, y: 18}
+        - {x: -15.5, y: 12}
+        - {x: -15.5, y: -3}
+        - {x: -8.5, y: -17}
+        - {x: 11.5, y: -17}
+        - {x: 15.5, y: -6}
+        - {x: 15.5, y: 17}
+        - {x: 11.5, y: 18}
+    - name: forward6
+      rect:
+        serializedVersion: 2
+        x: 186
+        y: 312
+        width: 35
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 10.5, y: 18}
+        - {x: -9.5, y: 18}
+        - {x: -15.5, y: 16}
+        - {x: -15.5, y: 0}
+        - {x: -5.5, y: -17}
+        - {x: 4.5, y: -17}
+        - {x: 6.5, y: -15}
+        - {x: 17.5, y: 2}
+        - {x: 17.5, y: 14}
     outline: []
   spritePackingTag: 
   userData: 

@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class GreenBulletScript : MonoBehaviour {
 
     public int speed = 0;
     public int direction;
+    public GameObject spider;
 
     // Use this for initialization
     void Start () {
@@ -33,6 +35,10 @@ public class GreenBulletScript : MonoBehaviour {
         {
             Destroy(gameObject);
             Destroy(otherObject.gameObject);
+            Instantiate(spider);
+            Instantiate(spider);
+            RedSpiderSpawner.killedSpiders += 1;
+            GreenSpiderSpawner.totalSpiders += 2;
         }
     }
 

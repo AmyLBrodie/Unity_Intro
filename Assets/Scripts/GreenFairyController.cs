@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GreenFairyController : MonoBehaviour {
 
@@ -8,7 +10,13 @@ public class GreenFairyController : MonoBehaviour {
     float moveY = 0f;
     public static int direction = 0;
     int previousDirection; //up=0, down=1, left=2, right=3
+    int wait = 0;
     public GameObject bullet;
+    public GameObject web;
+    GameObject clone;
+    public Text redScore;
+    public Text greenScore;
+    bool up, down, left, right;
 
     // Use this for initialization
     void Start () {
@@ -18,11 +26,22 @@ public class GreenFairyController : MonoBehaviour {
     // Update is called once per frame
     void FixedUpdate()
     {
-        //GetComponent<Animator>().SetBool("shoot", false);
-        bool up = Input.GetKey("up");
-        bool down = Input.GetKey("down");
-        bool left = Input.GetKey("left");
-        bool right = Input.GetKey("right");
+        up = Input.GetKey(KeyCode.UpArrow);
+        down = Input.GetKey(KeyCode.DownArrow);
+        left = Input.GetKey(KeyCode.LeftArrow);
+        right = Input.GetKey(KeyCode.RightArrow);
+
+        if (wait == 251)
+        {
+            speed = 5f;
+            Destroy(clone);
+            wait = 0;
+        }
+        else if (wait < 251 && wait > 0)
+        {
+            wait += 1;
+        }
+
         if (up && !down && !left && !right)
         {
             previousDirection = direction;
@@ -59,15 +78,60 @@ public class GreenFairyController : MonoBehaviour {
         GetComponent<Rigidbody2D>().velocity = new Vector2(moveX * speed, moveY * speed);
         
 
-        if (Input.GetKeyDown("l"))
+        if (Input.GetKeyDown(KeyCode.Slash))
         {
             //GetComponent<Animator>().SetBool("shoot", true);
-            Instantiate(bullet, transform.position, transform.rotation);
+            if (wait == 0) {
+                Instantiate(bullet, transform.position, transform.rotation);
+            }
 
         }
         //GetComponent<Animator>().SetBool("shoot", false);
-
+        if (RedSpiderSpawner.killedSpiders == RedSpiderSpawner.totalSpiders || GreenSpiderSpawner.killedSpiders == GreenSpiderSpawner.totalSpiders)
+        {
+            SceneManager.LoadScene(2);
+            direction = 0;
+        }
+        else {
+            if (redScore != null)
+            {
+                redScore.text = "Red Spiders: " + RedSpiderSpawner.killedSpiders + "/" + RedSpiderSpawner.totalSpiders;
+            }
+            if (greenScore != null)
+            {
+                greenScore.text = "Green Spiders: " + GreenSpiderSpawner.killedSpiders + "/" + GreenSpiderSpawner.totalSpiders;
+            }
+        }
     }
+
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag != "Background") {
+            GetComponent<Rigidbody2D>().isKinematic = true;
+        }
+        if (collision.gameObject.tag == "Background")
+        {
+            GetComponent<Rigidbody2D>().isKinematic = false;
+        }
+        if (collision.gameObject.tag == "Red Spider")
+        {
+            this.speed = 0;
+            wait = 1;
+            if (clone != null)
+            {
+                Destroy(clone);
+            }
+            clone = Instantiate(web, transform.position, transform.rotation) as GameObject;
+            GetComponent<Rigidbody2D>().isKinematic = true;
+        }
+    }
+
+    void OnCollisionExit2D()
+    {
+        GetComponent<Rigidbody2D>().isKinematic = false;
+    }
+
 
     void flipFairy(int current, int previous)
     {

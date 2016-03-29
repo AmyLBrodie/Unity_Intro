@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 004c4a113aa0277489b2ce28711c40d1
-timeCreated: 1458918888
+timeCreated: 1459153924
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -13,6 +13,12 @@ TextureImporter:
     21300012: greenfairyshoot1
     21300014: greenfairyshoot2
     21300016: greenfairyshoot3
+    21300018: forward1
+    21300020: forward2
+    21300022: forward3
+    21300024: forward4
+    21300026: forward5
+    21300028: forward6
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -241,6 +247,125 @@ TextureImporter:
         - {x: 15, y: -11}
         - {x: 15, y: 11}
         - {x: 12, y: 19}
+    - name: forward1
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 312
+        width: 35
+        height: 36
+      alignment: 9
+      pivot: {x: 0.5, y: 0.53177726}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -12.5, y: 16.856018}
+        - {x: -14.5, y: 12.856018}
+        - {x: -14.5, y: -2.143982}
+        - {x: -5.5, y: -18.143982}
+        - {x: 6.5, y: -18.143982}
+        - {x: 14.5, y: -2.143982}
+        - {x: 14.5, y: 12.856018}
+        - {x: 13.5, y: 16.856018}
+    - name: forward2
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 312
+        width: 35
+        height: 36
+      alignment: 9
+      pivot: {x: 0.4999998, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 9.500008, y: 18}
+        - {x: -7.4999924, y: 18}
+        - {x: -15.499992, y: 16}
+        - {x: -15.499992, y: 0}
+        - {x: -5.4999924, y: -17}
+        - {x: 6.5000076, y: -17}
+        - {x: 11.500008, y: -7}
+        - {x: 15.500008, y: 2}
+        - {x: 15.500008, y: 12}
+    - name: forward3
+      rect:
+        serializedVersion: 2
+        x: 75
+        y: 312
+        width: 35
+        height: 36
+      alignment: 9
+      pivot: {x: 0.49999955, y: 0.4205568}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -10.499985, y: 20.859955}
+        - {x: -15.499985, y: 14.859955}
+        - {x: -15.499985, y: -0.14004517}
+        - {x: -8.499985, y: -14.140045}
+        - {x: 11.500015, y: -14.140045}
+        - {x: 15.500015, y: -3.1400452}
+        - {x: 15.500015, y: 19.859955}
+        - {x: 11.500015, y: 20.859955}
+    - name: forward4
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 312
+        width: 35
+        height: 36
+      alignment: 9
+      pivot: {x: 0.4346296, y: 0.46822274}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 8.787964, y: 19.143982}
+        - {x: -6.212036, y: 19.143982}
+        - {x: -15.212036, y: 8.143982}
+        - {x: -15.212036, y: -4.856018}
+        - {x: -10.212036, y: -15.856018}
+        - {x: 6.787964, y: -15.856018}
+        - {x: 15.787964, y: -3.856018}
+        - {x: 15.787964, y: 5.143982}
+    - name: forward5
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 312
+        width: 35
+        height: 36
+      alignment: 9
+      pivot: {x: 0.46731523, y: 0.5158878}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 3.6439667, y: 17.42804}
+        - {x: -3.3560333, y: 17.42804}
+        - {x: -15.356033, y: 7.4280396}
+        - {x: -15.356033, y: -0.57196045}
+        - {x: -14.356033, y: -4.5719604}
+        - {x: -7.3560333, y: -16.57196}
+        - {x: -3.3560333, y: -17.57196}
+        - {x: 8.643967, y: -17.57196}
+        - {x: 15.643967, y: -4.5719604}
+        - {x: 15.643967, y: 4.4280396}
+        - {x: 14.643967, y: 9.42804}
+    - name: forward6
+      rect:
+        serializedVersion: 2
+        x: 186
+        y: 312
+        width: 35
+        height: 36
+      alignment: 9
+      pivot: {x: 0.51634306, y: 0.46822274}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 9.927994, y: 19.143982}
+        - {x: -10.072006, y: 19.143982}
+        - {x: -16.072006, y: 17.143982}
+        - {x: -16.072006, y: 1.1439819}
+        - {x: -6.072006, y: -15.856018}
+        - {x: 3.9279938, y: -15.856018}
+        - {x: 5.927994, y: -13.856018}
+        - {x: 16.927994, y: 3.143982}
+        - {x: 16.927994, y: 15.143982}
     outline: []
   spritePackingTag: 
   userData: 

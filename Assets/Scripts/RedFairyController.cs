@@ -1,14 +1,22 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class RedFairyController : MonoBehaviour {
 
     float speed = 5f;
     float moveX = 0f;
     float moveY = 0f;
+    int wait = 0;
     public static int direction = 0;
     int previousDirection; // up=0, down=1, left=2, right=3
     public GameObject bullet;
+    public GameObject web;
+    GameObject clone;
+    public Text redScore;
+    public Text greenScore;
+    bool up, down, left, right;
 
     // Use this for initialization
     void Start () {
@@ -17,10 +25,25 @@ public class RedFairyController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-        bool up = Input.GetKey("w");
-        bool down = Input.GetKey("s");
-        bool left = Input.GetKey("a");
-        bool right = Input.GetKey("d");
+        up = Input.GetKey(KeyCode.W);
+        down = Input.GetKey(KeyCode.S);
+        left = Input.GetKey(KeyCode.A);
+        right = Input.GetKey(KeyCode.D);
+
+        if (wait == 250)
+        {
+            speed = 5f;
+            Destroy(clone);
+        }
+        else if (wait < 250)
+        {
+            wait += 1;
+        }
+        else
+        {
+            wait = 0;
+        }
+
         if (up && !down && !left && !right)
         {
             previousDirection = direction;
@@ -57,7 +80,7 @@ public class RedFairyController : MonoBehaviour {
         GetComponent<Rigidbody2D>().velocity = new Vector2(moveX * speed, moveY * speed);
 
 
-        if (Input.GetKeyDown("5"))
+        if (Input.GetKeyDown(KeyCode.Alpha5))
         {
             //GetComponent<Animator>().SetBool("shoot", true);
 
@@ -65,7 +88,53 @@ public class RedFairyController : MonoBehaviour {
         }
         //GetComponent<Animator>().SetBool("shoot", false);
 
+        if (RedSpiderSpawner.killedSpiders == RedSpiderSpawner.totalSpiders || GreenSpiderSpawner.killedSpiders == GreenSpiderSpawner.totalSpiders)
+        {
+            SceneManager.LoadScene(2);
+            direction = 0;
+        }
+        else {
+            if (redScore != null)
+            {
+                redScore.text = "Red Spiders: " + RedSpiderSpawner.killedSpiders + "/" + RedSpiderSpawner.totalSpiders;
+            }
+            if (greenScore != null)
+            {
+                greenScore.text = "Green Spiders: " + GreenSpiderSpawner.killedSpiders + "/" + GreenSpiderSpawner.totalSpiders;
+            }
+        }
+
     }
+
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag != "Background")
+        {
+            GetComponent<Rigidbody2D>().isKinematic = true;
+        }
+        if (collision.gameObject.tag == "Background")
+        {
+            GetComponent<Rigidbody2D>().isKinematic = false;
+        }
+        if (collision.gameObject.tag == "Green Spider")
+        {
+            this.speed = 0;
+            wait = 0;
+            if (clone != null)
+            {
+                Destroy(clone);
+            }
+            clone = Instantiate(web, transform.position, transform.rotation) as GameObject;
+        }
+    }
+
+
+    void OnCollisionExit2D()
+    {
+        GetComponent<Rigidbody2D>().isKinematic = false;
+    }
+
 
     void flipFairy(int current, int previous)
     {

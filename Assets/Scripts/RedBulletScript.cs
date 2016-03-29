@@ -1,15 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using UnityEngine.UI;
 
 public class RedBulletScript : MonoBehaviour {
 
     public int speed = 0;
     public int direction;
+    public GameObject spider;
 
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         direction = RedFairyController.direction;
         if (direction == 0)
         {
@@ -36,7 +37,13 @@ public class RedBulletScript : MonoBehaviour {
         {
             Destroy(gameObject);
             Destroy(otherObject.gameObject);
+            Instantiate(spider);
+            Instantiate(spider);
+            GreenSpiderSpawner.killedSpiders += 1;
+            RedSpiderSpawner.totalSpiders += 2;
         }
+
+        
     }
 
     void OnBecameInvisible()
