@@ -30,7 +30,7 @@ public class GreenFairyController : MonoBehaviour {
         down = Input.GetKey(KeyCode.DownArrow);
         left = Input.GetKey(KeyCode.LeftArrow);
         right = Input.GetKey(KeyCode.RightArrow);
-
+        // waiting for spider web to disappear
         if (wait == 251)
         {
             speed = 5f;
@@ -41,7 +41,8 @@ public class GreenFairyController : MonoBehaviour {
         {
             wait += 1;
         }
-
+        
+        // check which direction fairy is flying in (key input), sets velocity
         if (up && !down && !left && !right)
         {
             previousDirection = direction;
@@ -77,7 +78,7 @@ public class GreenFairyController : MonoBehaviour {
 
         GetComponent<Rigidbody2D>().velocity = new Vector2(moveX * speed, moveY * speed);
         
-
+        // checks if fairy wants to shoot (key input)
         if (Input.GetKeyDown(KeyCode.Slash))
         {
             if (wait == 0) {
@@ -86,6 +87,7 @@ public class GreenFairyController : MonoBehaviour {
 
         }
 
+        // checks if winning condition is met and updates score
         if (RedSpiderSpawner.killedSpiders == RedSpiderSpawner.totalSpiders || GreenSpiderSpawner.killedSpiders == GreenSpiderSpawner.totalSpiders)
         {
             SceneManager.LoadScene(2);
@@ -103,7 +105,7 @@ public class GreenFairyController : MonoBehaviour {
         }
     }
 
-
+    // check for collisions with background, red fairy and spiders, collision with red spider causes fairy to get stuck for a bit of time
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag != "Background" && collision.gameObject.tag != "Red Fairy") {
@@ -126,12 +128,13 @@ public class GreenFairyController : MonoBehaviour {
         }
     }
 
+    // check for end of collision
     void OnCollisionExit2D()
     {
         GetComponent<Rigidbody2D>().isKinematic = false;
     }
 
-
+    //controls rotation of fairy, so that fairy appears to be flying in correct direction
     void flipFairy(int current, int previous)
     {
         if (current != previous)

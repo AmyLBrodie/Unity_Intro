@@ -30,6 +30,7 @@ public class RedFairyController : MonoBehaviour {
         left = Input.GetKey(KeyCode.A);
         right = Input.GetKey(KeyCode.D);
 
+        // waiting for spider web to disappear
         if (wait == 251)
         {
             speed = 5f;
@@ -41,6 +42,7 @@ public class RedFairyController : MonoBehaviour {
             wait += 1;
         }
 
+        //check direction fairy is flying (key input) and set velocity
         if (up && !down && !left && !right)
         {
             previousDirection = direction;
@@ -76,16 +78,16 @@ public class RedFairyController : MonoBehaviour {
 
         GetComponent<Rigidbody2D>().velocity = new Vector2(moveX * speed, moveY * speed);
 
-
+        // check if fairy wants to shoot (key input)
         if (Input.GetKeyDown(KeyCode.Alpha5))
         {
-
             if (wait == 0)
             {
                 Instantiate(bullet, transform.position, transform.rotation);
             }
         }
 
+        // checks winning condition and updates scores
         if (RedSpiderSpawner.killedSpiders == RedSpiderSpawner.totalSpiders || GreenSpiderSpawner.killedSpiders == GreenSpiderSpawner.totalSpiders)
         {
             SceneManager.LoadScene(2);
@@ -104,7 +106,7 @@ public class RedFairyController : MonoBehaviour {
 
     }
 
-
+    // checks for collisions with background, green fairy and spiders, if spider of opposite colour collides fairy is stuck for a bit of time
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag != "Background" && collision.gameObject.tag != "Green Fairy")
@@ -127,13 +129,13 @@ public class RedFairyController : MonoBehaviour {
         }
     }
 
-
+    // checks for end of collision
     void OnCollisionExit2D()
     {
         GetComponent<Rigidbody2D>().isKinematic = false;
     }
 
-
+    // rotates fairy so she appears to be flying in correct direction
     void flipFairy(int current, int previous)
     {
         if (current != previous)

@@ -13,12 +13,14 @@ public class RedSpiderSpawner : MonoBehaviour {
     void Start () {
 	
 	}
-
+    
+    //spawns spiders when game starts
     void OnEnable()
     {
         Instantiate(spider);
         Instantiate(spider);
         Instantiate(spider);
+        // updates score for green fairy
         if (Score != null)
         {
             Score.text = "Red Spiders: " + killedSpiders + "/" + totalSpiders;

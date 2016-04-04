@@ -10,6 +10,7 @@ public class RedBulletScript : MonoBehaviour {
 
 
     // Use this for initialization
+    //initialises bullets direction and velocity
     void Start () {
         direction = RedFairyController.direction;
         if (direction == 0)
@@ -31,8 +32,10 @@ public class RedBulletScript : MonoBehaviour {
 
     }
 	
+    // checks for collision
     void OnTriggerEnter2D(Collider2D otherObject)
     {
+        // checks that its hitting green spider, spawns two red spiders and updates score
         if (otherObject.gameObject.tag == "Green Spider")
         {
             Destroy(gameObject);

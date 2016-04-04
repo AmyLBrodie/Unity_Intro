@@ -10,10 +10,12 @@ public class GreenSpiderSpawner : MonoBehaviour {
     public Text Score;
 
 	// Use this for initialization
+    // spawns spiders at start of game
 	void Start () {
         Instantiate(spider);
         Instantiate(spider);
         Instantiate(spider);
+        // updates score for red fairy
         if (Score != null)
         {
             Score.text = "Green Spiders: " + killedSpiders + "/" + totalSpiders;

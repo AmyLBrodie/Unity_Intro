@@ -9,6 +9,7 @@ public class GreenBulletScript : MonoBehaviour {
     public GameObject spider;
 
     // Use this for initialization
+    //initialises direction and velocity of bullet
     void Start () {
         direction = GreenFairyController.direction;
         if (direction == 0)
@@ -29,6 +30,7 @@ public class GreenBulletScript : MonoBehaviour {
         }
     }
 
+    // checks for collisions with red spider, spawns two more green spiders and updates score
     void OnTriggerEnter2D(Collider2D otherObject)
     {
         if (otherObject.gameObject.tag == "Red Spider")

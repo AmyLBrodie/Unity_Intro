@@ -7,6 +7,7 @@ public class EndGameScript : MonoBehaviour {
     public Text winnerText;
 
 	// Use this for initialization
+    //helps to reinitialise games static variables
 	void Start () {
 	    if (RedSpiderSpawner.killedSpiders == RedSpiderSpawner.totalSpiders)
         {

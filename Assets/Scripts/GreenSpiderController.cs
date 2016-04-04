@@ -11,6 +11,7 @@ public class GreenSpiderController : MonoBehaviour {
     Quaternion currentRotation;
 
     // Use this for initialization
+    // initialises spider with a destination and position and rotation;
     void Start()
     {
         destination = new Vector2(Random.Range(-7.74f, 6.25f), Random.Range(1.85f, 7.31f));
@@ -22,6 +23,7 @@ public class GreenSpiderController : MonoBehaviour {
     // Update is called once per frame
     void FixedUpdate()
     {
+        // checks whether spider is allowed to move in a specific direction or not, deals with  collisions and reaching destination
         if (!destinationReached && !collisionOccured)
         {
             moveDirection();
@@ -60,6 +62,7 @@ public class GreenSpiderController : MonoBehaviour {
         }
     }
 
+    //checks for collisions
     void OnCollisionEnter2D(Collision2D collision)
     {
         collisionOccured = true;
@@ -67,6 +70,7 @@ public class GreenSpiderController : MonoBehaviour {
         currentRotation = GetComponent<Transform>().rotation;
     }
 
+    //controls movement of spider
     void moveDirection()
     {
         if (destination.y - 1 < GetComponent<Transform>().position.y && destination.y + 1 > GetComponent<Transform>().position.y)
@@ -115,6 +119,7 @@ public class GreenSpiderController : MonoBehaviour {
         
     }
 
+    //controls rotation of spider so it appears to move correctly
     void flipSpider(int current, int previous)
     {
         if (current != previous)
