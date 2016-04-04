@@ -80,13 +80,12 @@ public class GreenFairyController : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.Slash))
         {
-            //GetComponent<Animator>().SetBool("shoot", true);
             if (wait == 0) {
                 Instantiate(bullet, transform.position, transform.rotation);
             }
 
         }
-        //GetComponent<Animator>().SetBool("shoot", false);
+
         if (RedSpiderSpawner.killedSpiders == RedSpiderSpawner.totalSpiders || GreenSpiderSpawner.killedSpiders == GreenSpiderSpawner.totalSpiders)
         {
             SceneManager.LoadScene(2);
@@ -107,14 +106,14 @@ public class GreenFairyController : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag != "Background") {
+        if (collision.gameObject.tag != "Background" && collision.gameObject.tag != "Red Fairy") {
             GetComponent<Rigidbody2D>().isKinematic = true;
         }
         if (collision.gameObject.tag == "Background")
         {
             GetComponent<Rigidbody2D>().isKinematic = false;
         }
-        if (collision.gameObject.tag == "Red Spider")
+        if (collision.gameObject.tag == "Red Spider" && wait == 0)
         {
             this.speed = 0;
             wait = 1;

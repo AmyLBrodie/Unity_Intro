@@ -30,18 +30,15 @@ public class RedFairyController : MonoBehaviour {
         left = Input.GetKey(KeyCode.A);
         right = Input.GetKey(KeyCode.D);
 
-        if (wait == 250)
+        if (wait == 251)
         {
             speed = 5f;
             Destroy(clone);
+            wait = 0;
         }
-        else if (wait < 250)
+        else if (wait < 251 && wait > 0)
         {
             wait += 1;
-        }
-        else
-        {
-            wait = 0;
         }
 
         if (up && !down && !left && !right)
@@ -82,11 +79,12 @@ public class RedFairyController : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.Alpha5))
         {
-            //GetComponent<Animator>().SetBool("shoot", true);
 
-            Instantiate(bullet, transform.position, transform.rotation);
+            if (wait == 0)
+            {
+                Instantiate(bullet, transform.position, transform.rotation);
+            }
         }
-        //GetComponent<Animator>().SetBool("shoot", false);
 
         if (RedSpiderSpawner.killedSpiders == RedSpiderSpawner.totalSpiders || GreenSpiderSpawner.killedSpiders == GreenSpiderSpawner.totalSpiders)
         {
@@ -109,7 +107,7 @@ public class RedFairyController : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag != "Background")
+        if (collision.gameObject.tag != "Background" && collision.gameObject.tag != "Green Fairy")
         {
             GetComponent<Rigidbody2D>().isKinematic = true;
         }
@@ -117,10 +115,10 @@ public class RedFairyController : MonoBehaviour {
         {
             GetComponent<Rigidbody2D>().isKinematic = false;
         }
-        if (collision.gameObject.tag == "Green Spider")
+        if (collision.gameObject.tag == "Green Spider" && wait == 0)
         {
             this.speed = 0;
-            wait = 0;
+            wait = 1;
             if (clone != null)
             {
                 Destroy(clone);

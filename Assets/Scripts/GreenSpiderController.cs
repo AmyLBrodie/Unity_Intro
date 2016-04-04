@@ -8,14 +8,15 @@ public class GreenSpiderController : MonoBehaviour {
     bool collisionOccured = false, destinationReached = false;
     bool xReached = false, yReached = false;
     Vector2 destination;
+    Quaternion currentRotation;
 
     // Use this for initialization
     void Start()
     {
-        //direction = Random.Range(0,3);
         destination = new Vector2(Random.Range(-7.74f, 6.25f), Random.Range(1.85f, 7.31f));
         GetComponent<Transform>().position = new Vector3(Random.Range(-7.74f, 6.25f), Random.Range(1.85f, 7.31f), 0);
         GetComponent<Transform>().rotation = new Quaternion(0, 0, 0, 0);
+        currentRotation = GetComponent<Transform>().rotation;
     }
 
     // Update is called once per frame
@@ -24,12 +25,15 @@ public class GreenSpiderController : MonoBehaviour {
         if (!destinationReached && !collisionOccured)
         {
             moveDirection();
-            //flipSpider(direction, previousDirection);
         }
         if (collisionOccured)
         {
             destinationReached = true;
             collisionOccured = false;
+            if (currentRotation != null)
+            {
+                GetComponent<Transform>().rotation = currentRotation;
+            }
         }
         if (destinationReached)
         {
@@ -37,14 +41,30 @@ public class GreenSpiderController : MonoBehaviour {
             destinationReached = false;
             xReached = false;
             yReached = false;
+            if (direction == 0)
+            {
+                destination.y = 1.78f;
+            }
+            else if (direction == 1)
+            {
+                destination.y = 7.37f;
+            }
+            else if (direction == 2)
+            {
+                destination.x = 6.79f;
+            }
+            else if (direction == 3)
+            {
+                destination.x = -7.65f;
+            }
         }
     }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
         collisionOccured = true;
-        //destinationReached = true;
-        //GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+        destinationReached = true;
+        currentRotation = GetComponent<Transform>().rotation;
     }
 
     void moveDirection()
@@ -57,37 +77,42 @@ public class GreenSpiderController : MonoBehaviour {
         {
             xReached = true;
         }
-
-        if (destination.y > GetComponent<Transform>().position.y && !yReached)
+        if (!xReached || !yReached)
         {
-            GetComponent<Rigidbody2D>().velocity = new Vector2(0, speed);
-            previousDirection = direction;
-            direction = 0;
+            if (destination.y > GetComponent<Transform>().position.y && !yReached)
+            {
+                GetComponent<Rigidbody2D>().velocity = new Vector2(0, speed);
+                previousDirection = direction;
+                direction = 0;
+                flipSpider(direction, previousDirection);
+            }
+            else if (destination.y < GetComponent<Transform>().position.y && !yReached)
+            {
+                GetComponent<Rigidbody2D>().velocity = new Vector2(0, speed * -1);
+                previousDirection = direction;
+                direction = 1;
+                flipSpider(direction, previousDirection);
+            }
+            else if (destination.x < GetComponent<Transform>().position.x && !xReached)
+            {
+                GetComponent<Rigidbody2D>().velocity = new Vector2(speed * -1, 0);
+                previousDirection = direction;
+                direction = 2;
+                flipSpider(direction, previousDirection);
+            }
+            else if (destination.x > GetComponent<Transform>().position.x && !xReached)
+            {
+                GetComponent<Rigidbody2D>().velocity = new Vector2(speed, 0);
+                previousDirection = direction;
+                direction = 3;
+                flipSpider(direction, previousDirection);
+            }
         }
-        else if (destination.y < GetComponent<Transform>().position.y && !yReached)
-        {
-            GetComponent<Rigidbody2D>().velocity = new Vector2(0, speed * -1);
-            previousDirection = direction;
-            direction = 1;
-        }
-        else if (destination.x < GetComponent<Transform>().position.x && !xReached)
-        {
-            GetComponent<Rigidbody2D>().velocity = new Vector2(speed * -1, 0);
-            previousDirection = direction;
-            direction = 2;
-        }
-        else if (destination.x > GetComponent<Transform>().position.x && !xReached)
-        {
-            GetComponent<Rigidbody2D>().velocity = new Vector2(speed, 0);
-            previousDirection = direction;
-            direction = 3;
-        }
-
-        if (yReached && xReached)
+        else if (yReached && xReached)
         {
             destinationReached = true;
         }
-        flipSpider(direction, previousDirection);
+        
     }
 
     void flipSpider(int current, int previous)
